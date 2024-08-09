@@ -4,7 +4,7 @@ import {createRouter, createWebHistory} from 'vue-router';
 // import 하는 요소가 여러개 있을 때에도 {}를 붙인다.
 // import TestComponent from '@/components/TestComponent.vue';
 import { memberRouter } from './memberRouter';
-
+import { noticeRouter } from './noticeRouter';
 const routes = [
     // {
     //     // path로도 라우팅이 가능하고, name으로도 라우팅이 가능
@@ -20,6 +20,7 @@ const routes = [
     //     component: TestComponent
     // }
     ...memberRouter,
+    ...noticeRouter,
 ]
 
 

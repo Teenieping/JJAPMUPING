@@ -135,13 +135,15 @@ public class UserController {
     public ResponseEntity<?> findId(@RequestBody UserFindIdDto findIdDto) {
         try {
             String maskedEmail = userService.findId(findIdDto);
-            return ResponseEntity.ok(new CommonResDto(HttpStatus.OK, "아이디 찾기 성공", maskedEmail));
+            CommonResDto commonResDto = new CommonResDto(HttpStatus.OK, "아이디 찾기 성공",maskedEmail);
+            return new ResponseEntity<>(commonResDto, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new CommonResDto(HttpStatus.BAD_REQUEST, "없는 사용자 입니다.", null));
+            CommonErrorDto commonErrorDto = new CommonErrorDto(HttpStatus.BAD_REQUEST,"없는 사용자 입니다.");
+            return new ResponseEntity<>(commonErrorDto, HttpStatus.BAD_REQUEST);
         }
     }
+
 
     @PostMapping("/find-password")
     public ResponseEntity<?> findPassword(@RequestBody UserFindPasswordDto findPasswordDto) {
